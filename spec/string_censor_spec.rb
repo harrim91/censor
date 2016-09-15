@@ -26,6 +26,10 @@ describe StringCensor do
 			expect(subject.censor 'FOO bar').to eq 'F-- bar'
 		end
 
+		it 'censors words containing banned words' do
+			expect(subject.censor 'FoObar').to eq 'F--b-r'
+		end
+
 	end
 
 end
