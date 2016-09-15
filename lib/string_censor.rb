@@ -24,9 +24,7 @@ class StringCensor
 
 	private
 	def allowed?(word)
-		@banned_words.none? do |banned_word| 
-			Regexp.new(banned_word).match(word)
-		end ||
+		@banned_words.none? {|banned_word| Regexp.new(banned_word).match(word)} ||
 		@exceptions.include?(word)
 	end
 
