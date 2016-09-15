@@ -6,32 +6,32 @@ class StringCensor
 
 	attr_reader :banned_words, :exceptions
 
-	def add_banned_word word
-		@banned_words << word.downcase
+	def add_banned_word(word)
+		@banned_words << format_word(word)
 	end
 
-	def add_exception word
-		@exceptions << word.downcase
+	def add_exception(word)
+		@exceptions << format_word(word)
 	end
 
-	def censor string
+	def censor(string)
 		words = string.split
 		words.each do |word|
-			word.gsub! /[AEIOUaeiou]/, '-' unless allowed?(strip_punctuation word)
+			word.gsub!(/[AEIOUaeiou]/, '-') unless allowed?(format_word(word))
 		end
-		words.join ' '
+		words.join(' ')
 	end
 
 	private
-	def allowed? word
+	def allowed?(word)
 		@banned_words.none? do |banned_word| 
-			Regexp.new(banned_word).match word.downcase
+			Regexp.new(banned_word).match(word)
 		end ||
-		@exceptions.include?(word.downcase)
+		@exceptions.include?(word)
 	end
 
-	def strip_punctuation word
-		word.gsub(/\W/, '')
+	def format_word(word)
+		word.downcase.gsub(/\W/, '')
 	end
 
 end
