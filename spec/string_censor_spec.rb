@@ -27,7 +27,7 @@ describe StringCensor do
 	describe '#censor' do
 		before(:each) do
 			subject.add_banned_word 'foo'
-			# subject.add_exception 'football'
+			subject.add_exception 'football'
 		end
 		
 		it 'censors vowels in banned words' do
@@ -40,6 +40,10 @@ describe StringCensor do
 
 		it 'censors words containing banned words' do
 			expect(subject.censor 'FoObar').to eq 'F--b-r'
+		end
+
+		it 'does not censor exceptions containing banned words' do
+			expect(subject.censor 'FoObar FoOtBaLl foo bar').to eq 'F--b-r FoOtBaLl f-- bar'
 		end
 
 	end

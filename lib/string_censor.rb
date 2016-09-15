@@ -17,16 +17,17 @@ class StringCensor
 	def censor string
 		words = string.split
 		words.each do |word|
-			word.gsub! /[AEIOUaeiou]/, '-' if banned? word
+			word.gsub! /[AEIOUaeiou]/, '-' unless allowed? word
 		end
 		words.join ' '
 	end
 
 	private
-	def banned? word
-		@banned_words.any? do |banned_word| 
+	def allowed? word
+		@banned_words.none? do |banned_word| 
 			Regexp.new(banned_word).match word.downcase
-		end
+		end ||
+		@exceptions.include?(word.downcase)
 	end
 
 end
