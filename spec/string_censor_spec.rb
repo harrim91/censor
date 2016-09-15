@@ -13,9 +13,21 @@ describe StringCensor do
 		end
 	end
 
+	describe '#exceptions' do
+		it 'starts with no exceptions' do
+			expect(subject.exceptions).to be_empty
+		end
+
+		it 'can add banned words' do
+			subject.add_exception 'football'
+			expect(subject.exceptions).to eq ['football']
+		end
+	end
+
 	describe '#censor' do
 		before(:each) do
 			subject.add_banned_word 'foo'
+			# subject.add_exception 'football'
 		end
 		
 		it 'censors vowels in banned words' do
