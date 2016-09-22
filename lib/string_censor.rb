@@ -4,7 +4,7 @@ class StringCensor
 		@exceptions = []
 	end
 
-	attr_reader :banned_words, :exceptions
+	# attr_reader :banned_words, :exceptions
 
 	def add_banned_word(word)
 		@banned_words << format_word(word)
@@ -24,8 +24,8 @@ class StringCensor
 
 	private
 	def allowed?(word)
-		@banned_words.none? {|banned_word| Regexp.new(banned_word).match(word)} ||
-		@exceptions.include?(word)
+		@exceptions.include?(word) ||
+		@banned_words.none? {|banned_word| Regexp.new(banned_word).match(word)}
 	end
 
 	def format_word(word)
