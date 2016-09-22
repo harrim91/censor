@@ -4,8 +4,6 @@ class StringCensor
 		@exceptions = []
 	end
 
-	# attr_reader :banned_words, :exceptions
-
 	def add_banned_word(word)
 		@banned_words << format_word(word)
 	end
