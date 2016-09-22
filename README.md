@@ -16,7 +16,7 @@ Write a function that will take a string as an input, identify whether it contai
 |yellow     |           |           |
 
 ##Installation
-- Clone this repo: `not on github yet`
+- Clone this repo: `git clone git@github.com:harrim91/censor.git`
 - Assuming you have Ruby and Bundler installed, run `$ bundle install` to install dependencies.
 
 ##Running Tests
@@ -32,7 +32,7 @@ Write a function that will take a string as an input, identify whether it contai
  - This was written using TDD - I first wrote a feature test to cover the above example, and then wrote unit tests as I went along.
  - There are a couple of private helper methods which I think make the code more readable. 
  - I considered extracting a couple of classes (such as banned words and exceptions) in an attempt to showcase some OO skills, but I felt that since these are just arrays it would have overcomplicated the code and made it less readable.
- - I originally exposed the `banned_words` and `exceptions` properties of the class, but I figured that these don't get used anywhere except from in my unit tests, so I refactored the tests and code to account for this, replacing 4 tests with 1 and improving encapsulation. 
+ - I originally exposed the `banned_words` and `exceptions` properties of the class, which I wasn't comfortable with, as it didn't seem right to expose these and I realised that I had only exposed them in the first place to unit-test the `#add_banned_words` and `#add_exception` methods. I refactored the tests and code to account for this, testing these methods by the effect they had on the censor method instead. This allowed me to replace 4 tests with 1 and improved the encapsulation of the code.
 
 ## Useage
 
